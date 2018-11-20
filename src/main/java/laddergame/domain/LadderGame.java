@@ -1,10 +1,10 @@
 package laddergame.domain;
 
+import laddergame.domain.generator.PointGenerationStrategy;
+import laddergame.domain.generator.PointGenerator;
+import laddergame.domain.line.LadderLines;
 import laddergame.domain.player.Players;
 import laddergame.domain.result.Results;
-import laddergame2.domain.LadderLines;
-import laddergame2.domain.generator.PointGenerationStrategy;
-import laddergame2.domain.generator.PointGenerator;
 
 public class LadderGame {
 

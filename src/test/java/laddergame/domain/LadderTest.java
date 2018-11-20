@@ -6,13 +6,13 @@ import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import laddergame.domain.line.Direction;
+import laddergame.domain.line.LadderLine;
+import laddergame.domain.line.LadderLines;
+import laddergame.domain.line.Point;
 import laddergame.domain.player.Players;
 import laddergame.domain.result.Printable;
 import laddergame.domain.result.Results;
-import laddergame2.domain.Direction;
-import laddergame2.domain.LadderLine;
-import laddergame2.domain.LadderLines;
-import laddergame2.domain.Point;
 import org.junit.Test;
 
 public class LadderTest {

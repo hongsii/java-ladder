@@ -3,12 +3,12 @@ package laddergame.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import laddergame.domain.line.LadderLines;
 import laddergame.domain.result.DisplayLadder;
 import laddergame.domain.result.LadderErrorResult;
 import laddergame.domain.result.LadderFinalResult;
 import laddergame.domain.result.LadderResult;
 import laddergame.domain.result.Printable;
-import laddergame2.domain.LadderLines;
 
 public class Ladder {
 

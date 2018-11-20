@@ -1,46 +1,47 @@
 package laddergame.domain.line;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 import java.util.Arrays;
 
 public enum Direction {
-	LEFT(-1),
-	STRAIGHT(0),
-	RIGHT(1);
 
-	private int index;
+	LEFT(TRUE, FALSE),
+	STRAIGHT(FALSE, FALSE),
+	RIGHT(FALSE, TRUE);
 
-	Direction(int index) {
-		this.index = index;
+	private boolean left;
+	private boolean right;
+
+	Direction(boolean left, boolean right) {
+		this.left = left;
+		this.right = right;
 	}
 
-	public static Direction from(RandomDirectionStrategy randomDirectionStrategy) {
-		int randomDirectionIndex = randomDirectionStrategy.random();
-		return from(randomDirectionIndex);
-	}
+	public static Direction of(boolean left, boolean right) {
+		if (left && right) {
+			throw new IllegalStateException("모든 방향으로 선을 가질 수 없습니다.");
+		}
 
-	public static Direction from(int index) {
 		return Arrays.stream(Direction.values())
-				.filter(direction -> direction.isSameIndex(index))
+				.filter(direction -> (direction.left && left) || (direction.right && right))
 				.findFirst()
 				.orElse(STRAIGHT);
 	}
 
-	private boolean isSameIndex(int index) {
-		return this.index == index;
+	public static Direction first(boolean right) {
+		return of(false, right);
 	}
 
-	/**
-	 * 1 -> -1
-	 * -1 -> 1
-	 * 0 -> 0
-	 * @return
-	 */
-	public Direction getOppositeDirection() {
-		final int oppositeIndex = -index;
-		return from(oppositeIndex);
+	public Direction next(boolean nextRight) {
+		if (right) {
+			return Direction.of(right, FALSE);
+		}
+		return Direction.of(right, nextRight);
 	}
 
-	public int move(int index) {
-		return index + this.index;
+	public Direction last() {
+		return of(right, FALSE);
 	}
 }

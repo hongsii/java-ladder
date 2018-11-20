@@ -1,7 +1,8 @@
-package laddergame2.domain.generator;
+package laddergame.domain.generator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import laddergame.domain.line.Complexity;
 import org.junit.Test;
 
 public class ComplexityTest {

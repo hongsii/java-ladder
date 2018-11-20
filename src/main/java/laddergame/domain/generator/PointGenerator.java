@@ -1,8 +1,8 @@
-package laddergame2.domain.generator;
+package laddergame.domain.generator;
 
 import java.util.ArrayList;
 import java.util.List;
-import laddergame2.domain.Point;
+import laddergame.domain.line.Point;
 
 public class PointGenerator {
 

@@ -1,4 +1,4 @@
-package laddergame2.domain.generator;
+package laddergame.domain.generator;
 
 public interface PointGenerationStrategy {
 

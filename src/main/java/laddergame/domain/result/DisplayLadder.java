@@ -3,10 +3,10 @@ package laddergame.domain.result;
 import java.util.List;
 import java.util.stream.Collectors;
 import laddergame.domain.LadderGameInfo;
+import laddergame.domain.line.LadderLine;
+import laddergame.domain.line.LadderLines;
+import laddergame.domain.line.Point;
 import laddergame.domain.player.Player;
-import laddergame2.domain.LadderLine;
-import laddergame2.domain.LadderLines;
-import laddergame2.domain.Point;
 
 public class DisplayLadder {
 

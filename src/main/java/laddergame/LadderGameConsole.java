@@ -2,13 +2,13 @@ package laddergame;
 
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderGame;
+import laddergame.domain.generator.ComplexityStrategy;
+import laddergame.domain.line.Complexity;
 import laddergame.domain.player.Players;
 import laddergame.domain.result.Printable;
 import laddergame.domain.result.Results;
 import laddergame.view.InputView;
 import laddergame.view.ResultView;
-import laddergame2.domain.generator.Complexity;
-import laddergame2.domain.generator.ComplexityStrategy;
 
 public class LadderGameConsole {
 

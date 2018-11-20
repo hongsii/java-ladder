@@ -1,4 +1,4 @@
-package laddergame2.domain;
+package laddergame.domain.line;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;

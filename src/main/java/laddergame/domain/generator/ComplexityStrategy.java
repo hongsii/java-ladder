@@ -1,6 +1,7 @@
-package laddergame2.domain.generator;
+package laddergame.domain.generator;
 
 import java.util.Random;
+import laddergame.domain.line.Complexity;
 
 public class ComplexityStrategy implements PointGenerationStrategy {
 

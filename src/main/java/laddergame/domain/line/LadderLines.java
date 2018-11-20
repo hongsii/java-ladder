@@ -1,9 +1,9 @@
-package laddergame2.domain;
+package laddergame.domain.line;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import laddergame2.domain.generator.PointGenerator;
+import laddergame.domain.generator.PointGenerator;
 
 public class LadderLines {
 

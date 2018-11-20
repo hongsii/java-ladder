@@ -1,5 +1,7 @@
 package laddergame.domain.line;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
@@ -7,52 +9,70 @@ import org.junit.Test;
 public class PointTest {
 
 	@Test
-	public void 이전_점의_선이_존재하지않을때() {
-		Point beforePoint = Point.from(Direction.STRAIGHT);
-		Point point = Point.nextOf(beforePoint);
+	public void 캐싱_확인() {
+		Point point1 = Point.of(1, Direction.LEFT);
+		Point point2 = Point.of(1, Direction.LEFT);
 
-		assertThat(point).as("이전 점에 선이 존재하지 않으면 왼쪽 또는 직선이 생성")
-				.extracting("direction")
-				.containsAnyOf(Direction.LEFT, Direction.STRAIGHT);
-		assertThat(beforePoint).as("새로 생성된 점에 선이 존재하면 이전 점의 방향도 바뀌어야한다.")
-				.extracting("direction")
-				.containsAnyOf(Direction.RIGHT, Direction.STRAIGHT);
+		assertThat(point1 == point2).isTrue();
 	}
 
 	@Test
-	public void 이전_점의_선이_존재할때() {
-		Point beforePoint = Point.from(Direction.LEFT);
-		Point point = Point.nextOf(beforePoint);
+	public void 인덱스가_다르면_캐싱되지_않는다() {
+		Point point1 = Point.of(1, Direction.LEFT);
+		Point point2 = Point.of(2, Direction.LEFT);
 
-		assertThat(point).as("이전 점에 선이 존재하면 직선만 가능하다.")
-				.extracting("direction")
-				.containsOnly(Direction.STRAIGHT);
-		assertThat(beforePoint).as("이전 점의 방향이 바뀌면 안된다.")
-				.extracting("direction")
-				.containsOnly(Direction.LEFT);
+		assertThat(point1 == point2).isFalse();
+	}
+
+	@Test
+	public void 방향이_다르면_캐싱되지_않는다() {
+		Point point1 = Point.of(1, Direction.LEFT);
+		Point point2 = Point.of(1, Direction.RIGHT);
+
+		assertThat(point1 == point2).isFalse();
+	}
+
+	@Test
+	public void 시작_점_생성() {
+		final Boolean right = TRUE;
+		Point point = Point.first(right);
+
+		assertThat(point).isEqualTo(Point.of(0, Direction.first(right)));
+	}
+
+	@Test
+	public void 다음_점_생성() {
+		Point point = Point.of(0, Direction.first(TRUE));
+
+		assertThat(point.next(TRUE)).isEqualTo(Point.of(1, Direction.of(TRUE, FALSE)));
+	}
+
+	@Test
+	public void 마지막_점_생성() {
+		final Boolean right = TRUE;
+		Point point = Point.first(right);
+
+		assertThat(point.last()).isEqualTo(Point.of(1, Direction.of(right, FALSE)));
 	}
 
 	@Test
 	public void 왼쪽_이동() {
-		Point point = Point.from(Direction.LEFT);
+		Point point = Point.of(1, Direction.of(TRUE, FALSE));
 
-		final int index = 3;
-		assertThat(point.move(index)).isEqualTo(2);
-	}
-
-	@Test
-	public void 직진() {
-		Point point = Point.from(Direction.STRAIGHT);
-
-		final int index = 3;
-		assertThat(point.move(index)).isEqualTo(3);
+		assertThat(point.move()).isEqualTo(0);
 	}
 
 	@Test
 	public void 오른쪽_이동() {
-		Point point = Point.from(Direction.RIGHT);
+		Point point = Point.of(1, Direction.of(FALSE, TRUE));
 
-		final int index = 3;
-		assertThat(point.move(index)).isEqualTo(4);
+		assertThat(point.move()).isEqualTo(2);
+	}
+
+	@Test
+	public void 직진() {
+		Point point = Point.of(1, Direction.of(FALSE, FALSE));
+
+		assertThat(point.move()).isEqualTo(1);
 	}
 }
